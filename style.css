@@ -933,3 +933,17 @@ h1, h2, h3, h4 {
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     object-fit: cover;
 }
+.contact-section{
+    padding:80px 20px;
+    background:#f8fafc;
+}
+
+.contact-section .section-header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.contact-form{
+    max-width:700px;
+    margin:0 auto;
+}
