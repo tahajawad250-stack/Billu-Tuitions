@@ -328,29 +328,50 @@
 
     <p>Have a question or would like to book a free consultation? Send us a message below.</p>
 
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form action="https://formspree.io/f/mnjkzbak" method="POST" class="contact-form">
 
-        <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required>
+    <input
+        type="hidden"
+        name="_next"
+        value="https://tahajawad250-stack.github.io/Billu-Tuitions/thankyou.html">
 
-        <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            required>
+    <input
+        type="text"
+        name="name"
+        placeholder="Parent's Name"
+        required>
 
-        <textarea
-            name="message"
-            rows="6"
-            placeholder="Your Message"
-            required></textarea>
+    <input
+        type="email"
+        name="email"
+        placeholder="Email Address"
+        required>
 
-        <button type="submit">Send Message</button>
+    <input
+        type="text"
+        name="child"
+        placeholder="Child's School Year (e.g. Year 5)">
 
-    </form>
+    <select name="subject">
+        <option value="">Subject Interested In</option>
+        <option>Maths</option>
+        <option>English</option>
+        <option>Verbal Reasoning</option>
+        <option>Non-Verbal Reasoning</option>
+        <option>General Enquiry</option>
+    </select>
+
+    <textarea
+        name="message"
+        rows="6"
+        placeholder="Tell us how we can help..."
+        required></textarea>
+
+    <button type="submit" class="btn btn-dark">
+        Send Enquiry
+    </button>
+
+</form>
 
 </section>
     <footer class="site-footer">
