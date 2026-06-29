@@ -875,3 +875,20 @@ h1, h2, h3, h4 {
     color:#1f73ff;
     font-weight:600;
 }
+.resource-card{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.resource-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.resource-card .resource-link{
+    color:#4F46E5;
+    font-weight:600;
+}
