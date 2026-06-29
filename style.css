@@ -857,4 +857,21 @@ h1, h2, h3, h4 {
     .footer-grid {
         grid-template-columns: 2fr 1fr 1fr 1.5fr;
     }
+}.subject-card-link{
+    text-decoration:none;
+    color:inherit;
+    display:block;
+}
+
+.subject-card{
+    cursor:pointer;
+}
+
+.subject-card-link:hover .subject-card{
+    transform: translateY(-8px);
+}
+
+.btn-text{
+    color:#1f73ff;
+    font-weight:600;
 }
