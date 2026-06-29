@@ -673,6 +673,9 @@ h1, h2, h3, h4 {
     border-radius: var(--border-radius-lg);
     text-align: center;
     box-shadow: var(--shadow-lg);
+   .cta-inner
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .cta-inner h2 {
