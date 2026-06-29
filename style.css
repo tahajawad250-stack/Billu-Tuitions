@@ -947,3 +947,33 @@ h1, h2, h3, h4 {
     max-width:700px;
     margin:0 auto;
 }
+.paper-card.revision {
+    border-top: 5px solid #6366f1;
+}
+
+.paper-card.revision h2 {
+    color: #4338ca;
+}
+
+.paper-card.revision .download-btn {
+    background: #6366f1;
+}
+
+.paper-card.revision .download-btn:hover {
+    background: #4338ca;
+}
+.paper-card.vocab {
+    border-top: 5px solid #10b981;
+}
+
+.paper-card.vocab h2 {
+    color: #047857;
+}
+
+.paper-card.vocab .download-btn {
+    background: #10b981;
+}
+
+.paper-card.vocab .download-btn:hover {
+    background: #047857;
+}
