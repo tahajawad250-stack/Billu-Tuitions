@@ -305,54 +305,66 @@
     </main>
 <section id="contact" class="contact-section">
 
-    <h2>Contact Us</h2>
+  <section id="contact" class="contact-section">
 
-    <p>Have a question or would like to book a free consultation? Send us a message below.</p>
+    <div class="container">
 
-    <form action="https://formspree.io/f/mnjkzbak" method="POST" class="contact-form">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>
+                Have a question or would like to book a free consultation?
+                Send us a message below.
+            </p>
+        </div>
 
-    <input
-        type="hidden"
-        name="_next"
-        value="https://tahajawad250-stack.github.io/Billu-Tuitions/thankyou.html">
+        <form action="https://formspree.io/f/mnjkzbak"
+              method="POST"
+              class="contact-form">
 
-    <input
-        type="text"
-        name="name"
-        placeholder="Parent's Name"
-        required>
+            <input
+                type="hidden"
+                name="_next"
+                value="https://tahajawad250-stack.github.io/Billu-Tuitions/thankyou.html">
 
-    <input
-        type="email"
-        name="email"
-        placeholder="Email Address"
-        required>
+            <input
+                type="text"
+                name="name"
+                placeholder="Parent's Name"
+                required>
 
-    <input
-        type="text"
-        name="child"
-        placeholder="Child's School Year (e.g. Year 5)">
+            <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required>
 
-    <select name="subject">
-        <option value="">Subject Interested In</option>
-        <option>Maths</option>
-        <option>English</option>
-        <option>Verbal Reasoning</option>
-        <option>Non-Verbal Reasoning</option>
-        <option>General Enquiry</option>
-    </select>
+            <input
+                type="text"
+                name="child"
+                placeholder="Child's School Year (e.g. Year 5)">
 
-    <textarea
-        name="message"
-        rows="6"
-        placeholder="Tell us how we can help..."
-        required></textarea>
+            <select name="subject">
+                <option value="">Subject Interested In</option>
+                <option>Maths</option>
+                <option>English</option>
+                <option>Verbal Reasoning</option>
+                <option>Non-Verbal Reasoning</option>
+                <option>General Enquiry</option>
+            </select>
 
-    <button type="submit" class="btn btn-dark">
-        Send Enquiry
-    </button>
+            <textarea
+                name="message"
+                rows="6"
+                placeholder="Tell us how we can help..."
+                required></textarea>
 
-</form>
+            <button type="submit" class="btn btn-dark">
+                Send Enquiry
+            </button>
+
+        </form>
+
+    </div>
 
 </section>
     <footer class="site-footer">
