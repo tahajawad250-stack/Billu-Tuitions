@@ -1002,3 +1002,41 @@ h1, h2, h3, h4 {
 .download-btn:hover{
     transform:translateY(-2px);
 }
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.login-btn,
+.signup-btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.login-btn {
+    border: 2px solid #0077ff;
+    color: #0077ff;
+}
+
+.login-btn:hover {
+    background: #0077ff;
+    color: white;
+}
+
+.signup-btn {
+    background: #0077ff;
+    color: white;
+}
+
+.signup-btn:hover {
+    background: #005ecc;
+}
