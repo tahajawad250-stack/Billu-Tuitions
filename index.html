@@ -56,6 +56,23 @@
             </div>
         </section>
 
+        <section id="account" class="section-padding">
+          <div class="container" style="max-width: 400px;">
+            <h2>Account</h2>
+            <div id="logged-out-view">
+              <input type="email" id="auth-email" placeholder="Email" style="display:block; margin-bottom:10px; width:100%; padding:10px;">
+              <input type="password" id="auth-password" placeholder="Password" style="display:block; margin-bottom:10px; width:100%; padding:10px;">
+              <button onclick="signUp()" class="btn btn-primary">Sign Up</button>
+              <button onclick="logIn()" class="btn btn-secondary">Log In</button>
+              <p id="auth-error" style="color:red;"></p>
+            </div>
+            <div id="logged-in-view" style="display:none;">
+              <p>Logged in as <span id="user-email"></span></p>
+              <button onclick="logOut()" class="btn btn-secondary">Log Out</button>
+            </div>
+          </div>
+        </section>
+
         <section id="subjects" class="subjects-section section-padding">
             <div class="container">
                 <div class="section-header">
@@ -455,6 +472,57 @@ async function loadProducts() {
 }
 
 loadProducts();
+</script>
+
+<script type="module">
+import { getApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+const app = getApp();
+const auth = getAuth(app);
+
+window.signUp = async function () {
+  const email = document.getElementById("auth-email").value;
+  const password = document.getElementById("auth-password").value;
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    document.getElementById("auth-error").textContent = err.message;
+  }
+};
+
+window.logIn = async function () {
+  const email = document.getElementById("auth-email").value;
+  const password = document.getElementById("auth-password").value;
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    document.getElementById("auth-error").textContent = err.message;
+  }
+};
+
+window.logOut = function () {
+  signOut(auth);
+};
+
+onAuthStateChanged(auth, (user) => {
+  const loggedOutView = document.getElementById("logged-out-view");
+  const loggedInView = document.getElementById("logged-in-view");
+  if (user) {
+    loggedOutView.style.display = "none";
+    loggedInView.style.display = "block";
+    document.getElementById("user-email").textContent = user.email;
+  } else {
+    loggedOutView.style.display = "block";
+    loggedInView.style.display = "none";
+  }
+});
 </script>
 </body>
 </html>
