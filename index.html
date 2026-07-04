@@ -510,7 +510,6 @@ window.logIn = async function () {
 window.logOut = function () {
   signOut(auth);
 };
-
 onAuthStateChanged(auth, (user) => {
   const loggedOutView = document.getElementById("logged-out-view");
   const loggedInView = document.getElementById("logged-in-view");
