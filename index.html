@@ -510,6 +510,7 @@ window.logIn = async function () {
 window.logOut = function () {
   signOut(auth);
 };
+
 onAuthStateChanged(auth, (user) => {
   const loggedOutView = document.getElementById("logged-out-view");
   const loggedInView = document.getElementById("logged-in-view");
@@ -522,6 +523,42 @@ onAuthStateChanged(auth, (user) => {
     loggedInView.style.display = "none";
   }
 });
+</script>
+
+<script type="module">
+import { getApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, onSnapshot }
+  from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const app = getApp();
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.buyProduct = async function (priceId) {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please log in first to make a purchase.");
+    return;
+  }
+  const checkoutRef = collection(db, "customers", user.uid, "checkout_sessions");
+
+  const docRef = await addDoc(checkoutRef, {
+    price: priceId,
+    success_url: window.location.origin + "/success.html",
+    cancel_url: window.location.origin + "/cancel.html",
+  });
+
+  onSnapshot(docRef, (snap) => {
+    const data = snap.data();
+    if (data.url) {
+      window.location.assign(data.url);
+    }
+    if (data.error) {
+      alert("Payment error: " + data.error.message);
+    }
+  });
+};
 </script>
 </body>
 </html>
