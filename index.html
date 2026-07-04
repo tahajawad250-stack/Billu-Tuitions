@@ -479,7 +479,6 @@ async function loadProducts() {
     container.appendChild(card);
   }
 }
-
 loadProducts();
 </script>
 
@@ -552,11 +551,12 @@ window.buyProduct = async function (priceId) {
   }
   const checkoutRef = collection(db, "customers", user.uid, "checkout_sessions");
 
-  const docRef = await addDoc(checkoutRef, {
-    price: priceId,
-    success_url: window.location.origin + "/success.html",
-    cancel_url: window.location.origin + "/cancel.html",
-  });
+const docRef = await addDoc(checkoutRef, {
+  mode: "payment",
+  price: priceId,
+  success_url: window.location.origin + "/success.html",
+  cancel_url: window.location.origin + "/cancel.html",
+});
   onSnapshot(docRef, (snap) => {
     const data = snap.data();
     if (data.url) {
