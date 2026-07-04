@@ -444,15 +444,28 @@ try {
 
  <script type="module">
 import { getApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getFirestore, collection, getDocs }
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, where }
   from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const app = getApp();
+const auth = getAuth(app);
 const db = getFirestore(app);
+
+async function hasUserPurchased(uid) {
+  const paymentsRef = collection(db, "customers", uid, "payments");
+  const q = query(paymentsRef, where("status", "==", "succeeded"));
+  const snap = await getDocs(q);
+  return !snap.empty;
+}
 
 async function loadProducts() {
   const container = document.getElementById("products-list");
   if (!container) return;
+  container.innerHTML = "";
+
+  const user = auth.currentUser;
+  const purchased = user ? await hasUserPurchased(user.uid) : false;
 
   const snapshot = await getDocs(collection(db, "products"));
 
@@ -470,16 +483,30 @@ async function loadProducts() {
 
     const card = document.createElement("div");
     card.className = "resource-card";
-    card.innerHTML = `
-      <div class="resource-icon">📄</div>
-      <h3>${product.name}</h3>
-      <p>£${displayPrice}</p>
-      <button onclick="buyProduct('${priceId}')" class="btn btn-primary">Buy Now</button>
-    `;
+
+    if (purchased) {
+      card.innerHTML = `
+        <div class="resource-icon">✅</div>
+        <h3>${product.name}</h3>
+        <p>Purchased</p>
+        <a href="downloads/${productDoc.id}.pdf" class="btn btn-primary" download>Download</a>
+      `;
+    } else {
+      card.innerHTML = `
+        <div class="resource-icon">📄</div>
+        <h3>${product.name}</h3>
+        <p>£${displayPrice}</p>
+        <button onclick="buyProduct('${priceId}')" class="btn btn-primary">Buy Now</button>
+      `;
+    }
+
     container.appendChild(card);
   }
 }
-loadProducts();
+
+onAuthStateChanged(auth, () => {
+  loadProducts();
+});
 </script>
 
 <script type="module">
@@ -551,12 +578,13 @@ window.buyProduct = async function (priceId) {
   }
   const checkoutRef = collection(db, "customers", user.uid, "checkout_sessions");
 
-const docRef = await addDoc(checkoutRef, {
-  mode: "payment",
-  price: priceId,
-  success_url: window.location.origin + "/success.html",
-  cancel_url: window.location.origin + "/cancel.html",
-});
+  const docRef = await addDoc(checkoutRef, {
+    mode: "payment",
+    price: priceId,
+    success_url: window.location.origin + "/success.html",
+    cancel_url: window.location.origin + "/cancel.html",
+  });
+
   onSnapshot(docRef, (snap) => {
     const data = snap.data();
     if (data.url) {
