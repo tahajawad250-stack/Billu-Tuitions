@@ -456,19 +456,28 @@ async function loadProducts() {
 
   const snapshot = await getDocs(collection(db, "products"));
 
-  snapshot.forEach(doc => {
-    const product = doc.data();
+  for (const productDoc of snapshot.docs) {
+    const product = productDoc.data();
+    if (!product.active) continue;
+
+    const pricesSnapshot = await getDocs(collection(db, "products", productDoc.id, "prices"));
+    if (pricesSnapshot.empty) continue;
+
+    const priceDoc = pricesSnapshot.docs[0];
+    const priceId = priceDoc.id;
+    const priceData = priceDoc.data();
+    const displayPrice = (priceData.unit_amount / 100).toFixed(2);
 
     const card = document.createElement("div");
     card.className = "resource-card";
     card.innerHTML = `
       <div class="resource-icon">📄</div>
-      <h3>${product.title}</h3>
-      <p>£${product.price}</p>
-      <button onclick="buyProduct('${doc.id}')" class="btn btn-primary">Buy Now</button>
+      <h3>${product.name}</h3>
+      <p>£${displayPrice}</p>
+      <button onclick="buyProduct('${priceId}')" class="btn btn-primary">Buy Now</button>
     `;
     container.appendChild(card);
-  });
+  }
 }
 
 loadProducts();
