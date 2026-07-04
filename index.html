@@ -406,5 +406,21 @@
     </footer>
 
     <script src="script.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCZwJx-qVUJBC_KbLzxRQPBeDblf7TvX1Q",
+  authDomain: "billu-tuitions.firebaseapp.com",
+  projectId: "billu-tuitions",
+  storageBucket: "billu-tuitions.firebasestorage.app",
+  messagingSenderId: "802063997889",
+  appId: "1:802063997889:web:2e475389b4ef8eb352ed40"
+};
+
+const app = initializeApp(firebaseConfig);
+
+console.log("Firebase connected!");
+</script>
 </body>
 </html>
