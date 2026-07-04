@@ -421,7 +421,37 @@ try {
   console.log("🔥 Firebase connected successfully!");
 } catch (err) {
   console.error("Firebase failed:", err);
+  }
+  </script>
+
+  <script type="module">
+import { getFirestore, collection, getDocs }
+  from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const db = getFirestore(app); // reuses the `app` from your firebaseConfig script
+
+async function loadProducts() {
+  const container = document.getElementById("products-list");
+  if (!container) return;
+
+  const snapshot = await getDocs(collection(db, "products"));
+
+  snapshot.forEach(doc => {
+    const product = doc.data();
+
+    const card = document.createElement("div");
+    card.className = "resource-card";
+    card.innerHTML = `
+      <div class="resource-icon">📄</div>
+      <h3>${product.title}</h3>
+      <p>£${product.price}</p>
+      <button onclick="buyProduct('${doc.id}')" class="btn btn-primary">Buy Now</button>
+    `;
+    container.appendChild(card);
+  });
 }
+
+loadProducts();
 </script>
 </body>
 </html>
