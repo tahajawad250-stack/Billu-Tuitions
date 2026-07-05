@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.mobile-nav-toggle');
     const primaryNav = document.querySelector('#primary-navigation');
     const navLinks = document.querySelectorAll('.nav-list a');
-
     if (navToggle && primaryNav) {
         navToggle.addEventListener('click', () => {
             const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
