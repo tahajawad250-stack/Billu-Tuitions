@@ -587,23 +587,39 @@ const app = getApp();
 const auth = getAuth(app);
 
 window.signUp = async function () {
-  const email = document.getElementById("auth-email").value;
-  const password = document.getElementById("auth-password").value;
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    document.getElementById("auth-error").textContent = err.message;
-  }
-};
 
-window.logIn = async function () {
-  const email = document.getElementById("auth-email").value;
-  const password = document.getElementById("auth-password").value;
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    document.getElementById("auth-error").textContent = err.message;
+  const email = document.getElementById("signup-email").value.trim();
+  const confirmEmail = document.getElementById("confirm-email").value.trim();
+
+  const password = document.getElementById("signup-password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  const error = document.getElementById("auth-error");
+
+  error.textContent = "";
+
+  if (email !== confirmEmail) {
+    error.textContent = "Email addresses do not match.";
+    return;
   }
+
+  if (password !== confirmPassword) {
+    error.textContent = "Passwords do not match.";
+    return;
+  }
+
+  try {
+
+    await createUserWithEmailAndPassword(auth, email, password);
+
+    loginModal.style.display = "none";
+
+  } catch (err) {
+
+    error.textContent = err.message;
+
+  }
+
 };
 
 window.logOut = function () {
