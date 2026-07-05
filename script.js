@@ -87,3 +87,32 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(animateDashboard, 1000);
     }
 });
+// Login Popup
+
+const loginBtn = document.getElementById("loginBtn");
+
+const loginModal = document.getElementById("loginModal");
+
+const closeModal = document.querySelector(".close-modal");
+
+loginBtn.addEventListener("click", function(){
+
+    loginModal.style.display = "flex";
+
+});
+
+closeModal.addEventListener("click", function(){
+
+    loginModal.style.display = "none";
+
+});
+
+window.addEventListener("click", function(e){
+
+    if(e.target === loginModal){
+
+        loginModal.style.display = "none";
+
+    }
+
+});
