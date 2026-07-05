@@ -997,3 +997,7 @@ h1, h2, h3, h4 {
 .download-btn:hover{
     transform:translateY(-2px);
 }
+.login-btn{
+    background: transparent;
+    cursor: pointer;
+}
