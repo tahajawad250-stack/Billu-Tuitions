@@ -112,8 +112,6 @@ signupBtn.addEventListener("click", function () {
     signupTab.click();
 
 });
-
-});
 closeModal.addEventListener("click", function(){
 
     loginModal.style.display = "none";
