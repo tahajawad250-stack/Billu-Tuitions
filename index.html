@@ -59,55 +59,80 @@
             </div>
         </section>
 
-      <!-- Login Modal -->
+ <!-- Login Modal -->
 <div id="loginModal" class="modal">
 
     <div class="modal-box">
 
         <span class="close-modal">&times;</span>
 
-        <div class="container" style="max-width:400px;">
+        <h2 id="modalTitle">Welcome Back</h2>
 
-            <h2 style="margin-bottom:20px;">Account Login</h2>
+        <div class="auth-tabs">
+            <button id="loginTab" class="tab active">Login</button>
+            <button id="signupTab" class="tab">Sign Up</button>
+        </div>
 
-            <div id="logged-out-view">
+        <div id="auth-error"></div>
 
-                <input
-                    type="email"
-                    id="auth-email"
-                    placeholder="Email"
-                    style="display:block; margin-bottom:10px; width:100%; padding:10px;">
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
 
-                <input
-                    type="password"
-                    id="auth-password"
-                    placeholder="Password"
-                    style="display:block; margin-bottom:15px; width:100%; padding:10px;">
+            <input
+                type="email"
+                id="login-email"
+                placeholder="Email">
 
-                <button onclick="signUp()" class="btn btn-primary">
-                    Sign Up
-                </button>
+            <input
+                type="password"
+                id="login-password"
+                placeholder="Password">
 
-                <button onclick="logIn()" class="btn btn-secondary">
-                    Log In
-                </button>
+            <button onclick="logIn()" class="btn btn-primary auth-submit">
+                Log In
+            </button>
 
-                <p id="auth-error" style="color:red; margin-top:15px;"></p>
+        </div>
 
-            </div>
+        <!-- SIGNUP FORM -->
+        <div id="signupForm" style="display:none;">
 
-            <div id="logged-in-view" style="display:none;">
+            <input
+                type="email"
+                id="signup-email"
+                placeholder="Email">
 
-                <p>
-                    Logged in as
-                    <strong><span id="user-email"></span></strong>
-                </p>
+            <input
+                type="email"
+                id="confirm-email"
+                placeholder="Confirm Email">
 
-                <button onclick="logOut()" class="btn btn-secondary">
-                    Log Out
-                </button>
+            <input
+                type="password"
+                id="signup-password"
+                placeholder="Password">
 
-            </div>
+            <input
+                type="password"
+                id="confirm-password"
+                placeholder="Confirm Password">
+
+            <button onclick="signUp()" class="btn btn-primary auth-submit">
+                Create Account
+            </button>
+
+        </div>
+
+        <div id="logged-in-view" style="display:none;">
+
+            <p>
+                Logged in as
+                <strong><span id="user-email"></span></strong>
+            </p>
+
+            <button onclick="logOut()" class="btn btn-secondary">
+                Log Out
+            </button>
 
         </div>
 
@@ -362,8 +387,6 @@
        
     </main>
 <section id="contact" class="contact-section">
-
-  <section id="contact" class="contact-section">
 
     <div class="container">
 
