@@ -91,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const loginBtn = document.getElementById("loginBtn");
 
+const signupBtn = document.getElementById("signupBtn");
+
 const loginModal = document.getElementById("loginModal");
 
 const closeModal = document.querySelector(".close-modal");
@@ -100,7 +102,11 @@ loginBtn.addEventListener("click", function(){
     loginModal.style.display = "flex";
 
 });
+signupBtn.addEventListener("click", function(){
 
+    loginModal.style.display = "flex";
+
+});
 closeModal.addEventListener("click", function(){
 
     loginModal.style.display = "none";
