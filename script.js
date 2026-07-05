@@ -97,14 +97,21 @@ const loginModal = document.getElementById("loginModal");
 
 const closeModal = document.querySelector(".close-modal");
 
-loginBtn.addEventListener("click", function(){
+loginBtn.addEventListener("click", function () {
 
     loginModal.style.display = "flex";
+
+    loginTab.click();
 
 });
-signupBtn.addEventListener("click", function(){
+
+signupBtn.addEventListener("click", function () {
 
     loginModal.style.display = "flex";
+
+    signupTab.click();
+
+});
 
 });
 closeModal.addEventListener("click", function(){
@@ -122,3 +129,33 @@ window.addEventListener("click", function(e){
     }
 
 });
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+const modalTitle = document.getElementById("modalTitle");
+loginTab.onclick = () => {
+
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
+
+    loginForm.style.display = "block";
+    signupForm.style.display = "none";
+
+    modalTitle.textContent = "Welcome Back";
+
+};
+
+signupTab.onclick = () => {
+
+    signupTab.classList.add("active");
+    loginTab.classList.remove("active");
+
+    loginForm.style.display = "none";
+    signupForm.style.display = "block";
+
+    modalTitle.textContent = "Create Account";
+
+};
