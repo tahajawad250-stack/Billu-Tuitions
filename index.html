@@ -621,22 +621,43 @@ window.signUp = async function () {
   }
 
 };
+window.logIn = async function () {
+
+  const email = document.getElementById("login-email").value.trim();
+  const password = document.getElementById("login-password").value;
+
+  const error = document.getElementById("auth-error");
+
+  error.textContent = "";
+
+  try {
+
+    await signInWithEmailAndPassword(auth, email, password);
+
+    loginModal.style.display = "none";
+
+  } catch (err) {
+
+    error.textContent = err.message;
+
+  }
+
+};
 
 window.logOut = function () {
   signOut(auth);
 };
 
 onAuthStateChanged(auth, (user) => {
-  const loggedOutView = document.getElementById("logged-out-view");
-  const loggedInView = document.getElementById("logged-in-view");
-  if (user) {
-    loggedOutView.style.display = "none";
-    loggedInView.style.display = "block";
-    document.getElementById("user-email").textContent = user.email;
-  } else {
-    loggedOutView.style.display = "block";
-    loggedInView.style.display = "none";
-  }
+
+    if (user) {
+
+        document.getElementById("user-email").textContent = user.email;
+
+        loginModal.style.display = "none";
+
+    }
+
 });
 </script>
 
