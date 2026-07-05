@@ -249,7 +249,7 @@ h1, h2, h3, h4 {
 .mobile-nav-toggle[aria-expanded="true"] .hamburger::after {
     transform: rotate(-45deg);
     bottom: 0;
-   
+   }
 .primary-navigation {
     display: none;
     position: absolute;
@@ -266,10 +266,6 @@ h1, h2, h3, h4 {
 
 .primary-navigation.active {
     display: flex;
-}
-
-.primary-navigation.active {
-    display: block;
 }
 
 .nav-list {
@@ -829,7 +825,7 @@ h1, h2, h3, h4 {
         display: none;
     }
     
-    primary-navigation {
+    .primary-navigation {
         display: flex !important;
         position: static;
         width: auto;
@@ -839,7 +835,6 @@ h1, h2, h3, h4 {
         align-items: center;
         gap: 2rem;
         flex-direction: row;
-   
     }
     
     .nav-list {
