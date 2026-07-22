@@ -1115,3 +1115,24 @@ h1, h2, h3, h4 {
     margin-bottom:15px;
 
 }
+/* Logo image styling for Master My Exams */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+}
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.footer-logo .logo-img {
+    height: 36px;
+    /* remove filter line if your logo is already white/colored for dark footer */
+    filter: brightness(0) invert(1);
+}
