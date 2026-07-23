@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal | Master My Exams</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.portal-wrap{max-width:1200px;margin:0 auto;padding:2rem 1.5rem;display:grid;grid-template-columns:260px 1fr;gap:2rem}
+.portal-sidebar{background:#0f172a;border-radius:16px;padding:1.5rem;color:white;position:sticky;top:6rem;height:fit-content}
+.portal-sidebar h3{color:white;margin-bottom:1rem}
+.portal-sidebar a{display:block;color:#94a3b8;text-decoration:none;padding:0.6rem 0.8rem;border-radius:8px;margin-bottom:0.3rem}
+.portal-sidebar a.active,.portal-sidebar a:hover{background:#1e293b;color:white}
+.portal-main{display:grid;gap:1.5rem}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.stat-card{background:white;border-radius:12px;padding:1.2rem;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.stat-card strong{font-size:1.8rem;display:block;color:#0284c7}
+.paper-row{display:flex;justify-content:space-between;align-items:center;background:white;padding:1rem 1.2rem;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:0.8rem}
+@media(max-width:900px){.portal-wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container header-container">
+<a href="index.html" class="logo"><img src="images/logo.png" alt="Master My Exams" class="logo-img"><span class="logo-text"><span class="logo-accent">Master My</span> Exams</span></a>
+</div></header>
+<div class="portal-wrap">
+<aside class="portal-sidebar">
+<h3>Student Portal</h3>
+<a href="#" class="active">📊 Dashboard</a>
+<a href="papers.html">📄 My Papers</a>
+<a href="vocabulary.html">📇 Vocabulary</a>
+<a href="revision.html">📘 Revision</a>
+<a href="#" onclick="logOut()">🚪 Log Out</a>
+<div style="margin-top:2rem;padding-top:1rem;border-top:1px solid #1e293b"><small style="color:#64748b">Logged in as<br><span id="user-email-display" style="color:white"></span></small></div>
+</aside>
+<main class="portal-main">
+<div class="stat-grid">
+<div class="stat-card"><span>Papers Completed</span><strong>12</strong><small>↑ 3 this week</small></div>
+<div class="stat-card"><span>Avg. Score</span><strong>78%</strong><small>GL Standardised</small></div>
+<div class="stat-card"><span>Vocab Mastered</span><strong>247/500</strong><small>49% of GL list</small></div>
+<div class="stat-card"><span>Next Mock</span><strong>Maths Paper 2</strong><small>Due in 2 days</small></div>
+</div>
+<div class="stat-card">
+<h3>Your Progress Analytics</h3>
+<div class="progress-item"><div class="progress-info"><span>11+ Mathematics</span><span>88%</span></div><div class="progress-bar-container"><div class="progress-bar-fill maths-fill" style="width:88%"></div></div></div>
+</div>
+<div class="stat-card">
+<h3>Continue Learning</h3>
+<div class="paper-row"><span><strong>GL Maths Paper 1</strong> - 50 Qs • 50 mins</span><a class="btn btn-primary" style="padding:0.4rem 1rem">Resume</a></div>
+<div class="paper-row"><span><strong>Vocab List: Synonyms Set 4</strong> - 25 words</span><a class="btn btn-secondary" style="padding:0.4rem 1rem">Study</a></div>
+</div>
+</main>
+</div>
+<script type="module">
+import {getApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+const auth=getAuth(getApp());
+onAuthStateChanged(auth,user=>{if(!user){window.location.href="index.html"}else{document.getElementById("user-email-display").textContent=user.email}})
+window.logOut=()=>signOut(auth).then(()=>location.href="index.html")
+</script>
+</body></html>
